@@ -5,7 +5,6 @@ cap = cv2.VideoCapture(0)
 mpHands = mp.solutions.hands
 hands = mpHands.Hands()
 mpDraw = mp.solutions.drawing_utils
-flip = True 
 
 while True:
     success, img = cap. read()
@@ -19,4 +18,9 @@ while True:
             mpDraw.draw_landmarks(img, handLms, mpHands.HAND_CONNECTIONS)
     
     cv2.imshow("Image", img)
-    cv2.waitKey(1)
+    if cv2.waitKey(1) & 0xFF == ord('q'):
+        break
+
+cap.release()
+cv2.destroyAllWindows()
+
